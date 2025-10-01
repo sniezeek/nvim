@@ -36,9 +36,6 @@ return {
             vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
         end
 
-        --local lspconfig = require("lspconfig")
-        --lspconfig.pyright.setup {
-
         vim.lsp.config("pyright",{
             on_attach = on_attach,
             capabilities = capabilities,

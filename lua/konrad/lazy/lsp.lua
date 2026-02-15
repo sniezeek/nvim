@@ -153,9 +153,10 @@ return {
                     max_width = 80,
                 })
                 if win then
-                    vim.api.nvim_win_set_option(win, 'wrap', true)
-                    vim.api.nvim_win_set_option(win, 'linebreak', true)
-                
+                    vim.api.nvim_win_call(win, function()
+                        vim.wo.wrap = true
+                        vim.wo.linebreak = true
+                    end)
                     vim.api.nvim_create_autocmd({"BufLeave", "WinScrolled", "InsertEnter"}, {
                         once = true,
                         callback = function()
@@ -169,7 +170,7 @@ return {
         })
     require("mason").setup()
     require("mason-lspconfig").setup({
-        ensure_installed = { "pyright", "lua_ls", "copilot"},
+        ensure_installed = { "pyright", "lua_ls"},
         automatic_installation = true,
     })
     end,
